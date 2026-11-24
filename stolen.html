@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Données dérobées</title>
+  <style>
+    body { background: #0b0b0b; color: #0f0; font-family: "Courier New", monospace; padding: 40px; }
+    h1 { color: red; text-align: center; margin-bottom: 1em; }
+    .box { max-width: 800px; margin: auto; padding: 20px; border: 1px solid #0f0; background: #111; border-radius: 6px; }
+    .row { display: grid; grid-template-columns: 200px 1fr; margin: 8px 0; word-break: break-word; }
+    .label { color: #f55; }
+    .photo { display: block; margin: 20px auto; max-width: 320px; width: 100%; border: 1px solid #0f0; border-radius: 5px; }
+    .muted { color: #9f9; font-size: .9rem; opacity: .85; }
+  </style>
+</head>
+<body>
+  <h1>Données dérobées</h1>
+  <div class="box" id="content-box">
+    <img class="photo" id="res-photo" style="display:none;" alt="Photo capturée">
+    <div class="row"><div class="label">Date & heure</div><div id="res-timestamp"></div></div>
+    <div class="row"><div class="label">Adresse IP</div><div id="res-ip"></div></div>
+    <div class="row"><div class="label">User-Agent</div><div class="muted" id="res-ua"></div></div>
+    <hr style="border-color:#0f0; opacity:.3; margin:16px 0">
+    <div class="row"><div class="label">Nom / Prénom</div><div id="res-name"></div></div>
+    <div class="row"><div class="label">Email</div><div id="res-email"></div></div>
+    <div class="row"><div class="label">Téléphone</div><div id="res-phone"></div></div>
+    <div class="row"><div class="label">Date de naissance</div><div id="res-dob"></div></div>
+  </div>
+
+  <script>
+    const rawData = sessionStorage.getItem('stolenData');
+    if (!rawData) {
+      document.getElementById('content-box').innerHTML = '<p style="text-align:center; color:#f55;">Données introuvables ou expirées.</p>';
+    } else {
+      const data = JSON.parse(rawData);
+      if (data.photo) {
+        const img = document.getElementById('res-photo');
+        img.src = data.photo;
+        img.style.display = 'block';
+      }
+      document.getElementById('res-timestamp').textContent = data.timestamp;
+      document.getElementById('res-ip').textContent = data.ip;
+      document.getElementById('res-ua').textContent = data.user_agent;
+      document.getElementById('res-name').textContent = data.name;
+      document.getElementById('res-email').textContent = data.email;
+      document.getElementById('res-phone').textContent = data.num_tph;
+      document.getElementById('res-dob').textContent = data.date_birth;
+    }
+  </script>
+</body>
+</html>
