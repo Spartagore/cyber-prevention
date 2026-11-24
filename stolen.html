@@ -5,13 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Données dérobées</title>
   <style>
-    body { background: #0b0b0b; color: #0f0; font-family: "Courier New", monospace; padding: 40px; }
-    h1 { color: red; text-align: center; margin-bottom: 1em; }
+    * { box-sizing: border-box; }
+    body { background: #0b0b0b; color: #0f0; font-family: "Courier New", monospace; padding: 40px; margin: 0; }
+    h1 { color: red; text-align: center; margin-bottom: 1em; font-size: clamp(1.5rem, 6vw, 2.2rem); }
     .box { max-width: 800px; margin: auto; padding: 20px; border: 1px solid #0f0; background: #111; border-radius: 6px; }
-    .row { display: grid; grid-template-columns: 200px 1fr; margin: 8px 0; word-break: break-word; }
-    .label { color: #f55; }
-    .photo { display: block; margin: 20px auto; max-width: 320px; width: 100%; border: 1px solid #0f0; border-radius: 5px; }
+    .row { display: grid; grid-template-columns: 200px 1fr; margin: 10px 0; word-break: break-word; }
+    .label { color: #f55; font-weight: bold; }
+    .photo { display: block; margin: 0 auto 20px auto; max-width: 320px; width: 100%; border: 1px solid #0f0; border-radius: 5px; }
     .muted { color: #9f9; font-size: .9rem; opacity: .85; }
+
+    @media (max-width: 600px) {
+      body { padding: 15px; }
+      .box { padding: 15px; }
+      .row { grid-template-columns: 1fr; gap: 4px; margin: 14px 0; }
+    }
   </style>
 </head>
 <body>
