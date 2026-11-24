@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vous avez été "hacké" !</title>
+  <title>You’ve been hacked</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background: #000;
       color: #f00;
       font-family: "Courier New", monospace;
-      height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       margin: 0;
+      padding: 20px;
+      gap: 20px;
     }
 
     h1 {
-      font-size: 4rem;
-      margin-bottom: 1.5em;
+      font-size: clamp(2rem, 8vw, 4rem);
+      margin: 0;
       animation: flicker 1.2s infinite alternate;
       text-shadow: 0 0 20px red, 0 0 40px crimson;
     }
@@ -31,10 +37,33 @@
       100% { opacity: 1; text-shadow: 0 0 20px red; }
     }
 
+    a.button {
+      border: 3px solid #fff;
+      color: #fff;
+      padding: 14px 28px;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: clamp(1rem, 4.5vw, 1.5rem);
+      opacity: 0;
+      animation: fadein 2.5s forwards 2.5s;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    a.button:hover {
+      background: red;
+      border-color: red;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadein {
+      to { opacity: 1; }
+    }
+
     img {
-      width: 360px;
       max-width: 80%;
-      margin-bottom: 2em;
+      max-height: 40dvh;
+      width: auto;
+      height: auto;
       animation: glitch 2s infinite;
     }
 
@@ -46,34 +75,12 @@
       80% { transform: translate(-1px, -1px); }
       100% { transform: translate(0, 0); }
     }
-
-    a.button {
-      border: 3px solid #fff;
-      color: #fff;
-      padding: 20px 40px;
-      text-decoration: none;
-      border-radius: 10px;
-      font-size: 1.6rem;
-      opacity: 0;
-      animation: fadein 2.5s forwards 2.5s;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    a.button:hover {
-      background: red;
-      border-color: red;
-      transform: scale(1.1);
-    }
-
-    @keyframes fadein {
-      to { opacity: 1; }
-    }
   </style>
 </head>
 <body>
-  <h1>Vous avez été hacké</h1>
-  <img src="static/img/hacked_phone.png" alt="Hacked phone" />
+  <h1>You've been hacked</h1>
   <a class="button" href="stolen.html">Voir les données dérobées</a>
+  <img src="static/img/hacked_phone.png" alt="Hacked phone" />
 
   <audio autoplay>
     <source src="static/sounds/hack_alert.mp3" type="audio/mpeg">
